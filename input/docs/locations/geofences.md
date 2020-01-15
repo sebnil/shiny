@@ -25,7 +25,7 @@ public class YourStartup : ShinyStartup
 public class YourGeofenceDelegate : IGeofenceDelegate 
 {
 
-    public async Task OnStatusChanged(GeofenceRegion region)
+    public async Task OnStatusChanged(GeofenceState newStatus, GeofenceRegion region)
     {
 
     }
@@ -37,10 +37,10 @@ public class YourGeofenceDelegate : IGeofenceDelegate
 ## To start monitoring
 
 ```csharp
-Shiny.ShinyHost.Resolve<Shiny.Locations.IGeofenceManager>().StartMonitoring(new GeofenceRegion( 
-    "My House", // identifier - must be unique per registered geofence
-    Center = new Position(LATITUDE, LONGITUDE), // center point    
-    Distance.FromKilometers(1) // radius of fence
+Shiny.ShinyHost.Resolve<Shiny.Locations.IGeofenceManager>().StartMonitoring(new GeofenceRegion(
+    identifier: "My House", // identifier - must be unique per registered geofence
+    center: new Position(LATITUDE, LONGITUDE), // center point    
+    radius: Distance.FromKilometers(1) // radius of fence
 ));
 ```
 
